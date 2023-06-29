@@ -1,20 +1,26 @@
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2
-  datasource:
-    url: jdbc:h2:mem:test
   jpa:
     hibernate:
       ddl-auto: create  # (1) 스키마 자동 생성
     show-sql: true      # (2) SQL 쿼리 출력
     properties:
       hibernate:
-        format_sql: true  # (3) SQL pretty print
-  sql:
-    init:
-      data-locations: classpath*:db/h2/data.sql
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${RDS_PASSWORD}
+    url: ${RDS_URL}
+    username: admin
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 991088085016-3udvngkchprg1opii9jvhbagp64bpqhh.apps.googleusercontent.com
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
+            scope: profile,email
 logging:
   level:
     org:
@@ -25,3 +31,12 @@ server:
   servlet:
     encoding:
       force-response: true
+jwt:
+  key: ${JWT_SECRET_KEY}
+  access-token-expiration-minutes: 30
+  refresh-token-expiration-minutes: 420
+mail:
+  address:
+    admin: ${ADMIN_ADDRESS}
+config:
+  domain: http://${CONFIG_DOMAIN}

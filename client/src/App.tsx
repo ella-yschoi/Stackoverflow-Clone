@@ -1,15 +1,18 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AfterLoginHeader from './components/AfterLoginHeader';
+import BeforeLoginHeader from './components/BeforeLoginHeader';
 import GlobalStyles from './styles/GlobalStyles';
+import { RootState } from './store/store';
+import RouteProvider from './Routes';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
+
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyles />
-      <Routes>
-        <Route path="/" element={<div>Main ExamPage</div>} />
-        <Route path="/post" element={<div>Post ExamPage</div>} />
-      </Routes>
-    </BrowserRouter>
+      <RouteProvider>{isLogin ? <AfterLoginHeader /> : <BeforeLoginHeader />}</RouteProvider>
+    </>
   );
 }
 
