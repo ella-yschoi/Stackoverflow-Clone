@@ -101,7 +101,6 @@
 ## 💡API 명세서
 <details>
 <summary>API 명세서 자세히 보기</summary>
-<div markdown="1">
 <img width="100%" src="./public/api1.png"/>
 <img width="100%" src="./public/api2.png"/>
 <img width="100%" src="./public/api3.png"/>
