@@ -296,12 +296,9 @@ const BeforeLoginMainPage: React.FC = () => {
         },
       });
       const { data, pageInfo } = response.data;
-      console.log(data);
-      console.log(pageInfo);
       setAllQuestion(data);
       setPageNationData(pageInfo);
     } catch (error) {
-      console.error(error);
     }
   };
 
